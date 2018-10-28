@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class Queue {
 
     private int capacity, tail, size, head;
@@ -14,7 +12,7 @@ public class Queue {
     public void enqueue(Object value) {
 
         if (size == capacity) {
-            throw new IllegalArgumentException("Full Queue Exception");
+            throw new IllegalStateException("Full Queue Exception");
         }
 
         this.values[this.tail] = value;
@@ -24,7 +22,7 @@ public class Queue {
 
     public Object dequeue() {
         if (isEmpty()) {
-            throw new IllegalArgumentException("Empty Queue Exception");
+            throw new IllegalStateException("Empty Queue Exception");
         } else {
             this.size--;
             var node = this.values[this.head];
@@ -63,7 +61,7 @@ public class Queue {
 
         try {
             System.out.printf("If queue is empty, dequeue should return null: %s%n", queue.dequeue());
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalStateException e) {
             System.out.println(e.getMessage());
         }
 
@@ -88,7 +86,7 @@ public class Queue {
 
         try {
             queue.enqueue(14);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalStateException e) {
             System.out.println(e.getMessage());
         }
 
