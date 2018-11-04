@@ -44,7 +44,7 @@ public class Sum {
         int result_stack= s.sum_stack(n);
         long l4 = System.currentTimeMillis();
 
-        // 50005000 in 8 ms = 50005000 in 20 ms
+        // 50005000 in 8 ms = 50005000 in 20 ms for n = 10000
         System.out.printf("%d in %d ms = %d in %d ms", result_recursive, l2-l1, result_stack, l4-l3) ;
 
     }
