@@ -60,6 +60,7 @@ class BinaryTree
     }
 
     void print_st() {
+
         Stack<Node> stack = new Stack<Node>();
         stack.push(root);
 
@@ -78,6 +79,7 @@ class BinaryTree
     }
 
     void print_st2() {
+
         Stack<Node> stack = new Stack<Node>();
         stack.push(root);
 
@@ -88,7 +90,6 @@ class BinaryTree
             if (node.explored) {
                 System.out.printf("n=%d ", node.key);
             } else {
-
 
                 if (null != node.right) {
                     stack.push(node.right);
@@ -125,8 +126,6 @@ class BinaryTree
         tree.root.right.left.right = new Node(12);
         tree.root.right.right.left = new Node(13);
         tree.root.right.right.right = new Node(14);
-
-
 
         tree.print();
         System.out.println();
