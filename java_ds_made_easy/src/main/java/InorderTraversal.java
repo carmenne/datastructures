@@ -1,30 +1,10 @@
-
 import java.util.ArrayDeque;
 import java.util.Deque;
-/* Class containing left and right child of current
-node and key value*/
-class Node
-{
-    int key;
-    boolean explored;
-    Node left, right;
-    int children;
+import java.util.Hashtable;
 
-    Node(int item)
-    {
-        key = item;
-    }
-}
+class InorderTraversal {
 
-class BinaryTree
-{
-    private Node root;
-
-    void print() {
-        printRecursive(root);
-    }
-
-    private void printRecursive(Node node) {
+    static void printRecursive(Node node) {
 
         if (node == null) {
             return;
@@ -33,31 +13,34 @@ class BinaryTree
         if (null != node.left)
             printRecursive(node.left);
 
-        System.out.printf("n=%d ", node.key);
+        System.out.printf("n=%d ", node.data);
 
         if (null != node.right)
             printRecursive(node.right);
     }
 
 
-    void printIterative() {
+    static void printIterative(Node node) {
 
         Deque<Node> stack = new ArrayDeque<>();
-        stack.push(root);
+        stack.push(node);
+        Hashtable<Integer, Boolean> states = new Hashtable<>();
+        states.put(node.data, false);
 
-        while(!stack.isEmpty()) {
+        while (!stack.isEmpty()) {
 
-            Node node = stack.pop();
+            node = stack.pop();
+            boolean explored = states.get(node.data) != null && states.get(node.data);
 
-            if (node.explored) {
-                System.out.printf("n=%d ", node.key);
+            if (explored) {
+                System.out.printf("n=%d ", node.data);
             } else {
 
                 if (null != node.right) {
                     stack.push(node.right);
                 }
 
-                node.explored = true;
+                states.put(node.data, true);
                 stack.push(node);
 
                 if (null != node.left) {
@@ -68,56 +51,46 @@ class BinaryTree
         }
     }
 
-    void printIterative2() {
+    static void printIterative2(Node node) {
 
         Deque<Node> stack = new ArrayDeque<>();
-        stack.push(root);
+        stack.push(node);
+        Hashtable<Integer, Integer> states = new Hashtable<>();
+        states.put(node.data, 0);
 
         while (!stack.isEmpty()) {
 
-            Node node = stack.peek();
-            if (node.children == 0) {
+            node = stack.peek();
+            int explorations = null == states.get(node.data) ? 0 : states.get(node.data);
+            if (explorations == 0) {
                 if (null != node.left)
                     stack.push(node.left);
-                node.children++;
-            } else if (node.children == 1) {
-                System.out.printf("n=%d ", node.key);
+
+                states.put(node.data, 1);
+            } else if (explorations == 1) {
+                System.out.printf("n=%d ", node.data);
+
                 if (null != node.right)
                     stack.push(node.right);
-                node.children++;
-            } else if (node.children == 2) {
+
+                states.put(node.data, 2);
+            } else if (explorations == 2) {
                 stack.pop();
             }
         }
 
     }
 
-    public static void main(String[] args)
-    {
-        BinaryTree tree = new BinaryTree();
+    public static void main(String[] args) {
 
-        /*create root*/
-        tree.root = new Node(0);
-        tree.root.left = new Node(1);
-        tree.root.right = new Node(2);
-        tree.root.left.left = new Node(3);
-        tree.root.left.right = new Node(4);
-        tree.root.right.left = new Node(5);
-        tree.root.right.right = new Node(6);
-        tree.root.left.left.left = new Node(7);
-        tree.root.left.left.right = new Node(8);
-        tree.root.left.right.left = new Node(9);
-        tree.root.left.right.right = new Node(10);
-        tree.root.right.left.left = new Node(11);
-        tree.root.right.left.right = new Node(12);
-        tree.root.right.right.left = new Node(13);
-        tree.root.right.right.right = new Node(14);
+        BinaryTree binaryTree = BinaryTree.build();
 
-        tree.print();
+        InorderTraversal.printRecursive(binaryTree.root);
         System.out.println();
-        tree.printIterative();
+        InorderTraversal.printIterative(binaryTree.root);
         System.out.println();
-        tree.printIterative2();
+        InorderTraversal.printIterative2(binaryTree.root);
 
     }
 }
+
