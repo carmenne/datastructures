@@ -8,79 +8,47 @@ class Node
     boolean explored;
     Node left, right;
 
-    public Node(int item)
+    Node(int item)
     {
         key = item;
-        explored = false;
-        left = right = null;
     }
 
     boolean isExplored() {
         return explored;
     }
 
-
-    void setExplored(boolean visited) {
-        explored = visited;
+    void setExplored() {
+        explored = true;
     }
 }
 
 class BinaryTree
 {
-    Node root;
-
-    // Constructors
-    BinaryTree(int key)
-    {
-        root = new Node(key);
-    }
-
-    BinaryTree()
-    {
-        root = null;
-    }
+    private Node root;
 
     void print() {
-        pt(root);
+        printRecursive(root);
     }
 
-    void pt(Node node) {
+    private void printRecursive(Node node) {
 
         if (node == null) {
             return;
         }
 
         if (null != node.left)
-            pt(node.left);
+            printRecursive(node.left);
 
         System.out.printf("n=%d ", node.key);
 
         if (null != node.right)
-            pt(node.right);
+            printRecursive(node.right);
     }
 
-    void print_st() {
 
-        Stack<Node> stack = new Stack<Node>();
-        stack.push(root);
+    void printIterative() {
 
-        while(!stack.isEmpty()) {
-
-            Node node = stack.pop();
-            System.out.printf("n=%d ", node.key);
-
-            if (null != node.right)
-                stack.push(node.right);
-
-            if (null != node.left)
-                stack.push(node.left);
-        }
-
-    }
-
-    void print_st2() {
-
-        Stack<Node> stack = new Stack<Node>();
+        Stack<Node> stack = new Stack<>();
         stack.push(root);
 
         while(!stack.isEmpty()) {
@@ -129,9 +97,7 @@ class BinaryTree
 
         tree.print();
         System.out.println();
-        tree.print_st();
-        System.out.println();
-        tree.print_st2();
+        tree.printIterative();
 
     }
 }
