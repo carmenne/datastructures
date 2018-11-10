@@ -41,7 +41,11 @@ class MirrorTree {
         mirrorRecursive(binaryTree.root);
         InorderTraversal.printRecursive(binaryTree.root);
         System.out.println();
+        binaryTree = BinaryTree.build();
         mirrorIterative(binaryTree.root);
         InorderTraversal.printRecursive(binaryTree.root);
+        System.out.println();
+        binaryTree = BinaryTree.build();
+
     }
 }
