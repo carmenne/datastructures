@@ -8,18 +8,11 @@ class Node
     int key;
     boolean explored;
     Node left, right;
+    int children;
 
     Node(int item)
     {
         key = item;
-    }
-
-    boolean isExplored() {
-        return explored;
-    }
-
-    void setExplored() {
-        explored = true;
     }
 }
 
@@ -75,6 +68,30 @@ class BinaryTree
         }
     }
 
+    void printIterative2() {
+
+        Deque<Node> stack = new ArrayDeque<>();
+        stack.push(root);
+
+        while (!stack.isEmpty()) {
+
+            Node node = stack.peek();
+            if (node.children == 2) {
+                stack.pop();
+            } else if (node.children == 0) {
+                if (null != node.left)
+                    stack.push(node.left);
+                node.children++;
+            } else if (node.children == 1) {
+                System.out.printf("n=%d ", node.key);
+                if (null != node.right)
+                    stack.push(node.right);
+                node.children++;
+            }
+        }
+
+    }
+
     public static void main(String[] args)
     {
         BinaryTree tree = new BinaryTree();
@@ -99,6 +116,8 @@ class BinaryTree
         tree.print();
         System.out.println();
         tree.printIterative();
+        System.out.println();
+        tree.printIterative2();
 
     }
 }
