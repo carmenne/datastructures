@@ -76,9 +76,7 @@ class BinaryTree
         while (!stack.isEmpty()) {
 
             Node node = stack.peek();
-            if (node.children == 2) {
-                stack.pop();
-            } else if (node.children == 0) {
+            if (node.children == 0) {
                 if (null != node.left)
                     stack.push(node.left);
                 node.children++;
@@ -87,6 +85,8 @@ class BinaryTree
                 if (null != node.right)
                     stack.push(node.right);
                 node.children++;
+            } else if (node.children == 2) {
+                stack.pop();
             }
         }
 
