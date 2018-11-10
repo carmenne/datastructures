@@ -1,5 +1,6 @@
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 /* Class containing left and right child of current
 node and key value*/
 class Node
@@ -48,7 +49,7 @@ class BinaryTree
 
     void printIterative() {
 
-        Stack<Node> stack = new Stack<>();
+        Deque<Node> stack = new ArrayDeque<>();
         stack.push(root);
 
         while(!stack.isEmpty()) {
