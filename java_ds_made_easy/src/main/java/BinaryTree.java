@@ -1,11 +1,8 @@
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.*;
 
 class BinaryTree
 {
     Node root;
-
-
 
     public static BinaryTree build()
     {
@@ -30,5 +27,48 @@ class BinaryTree
 
         return tree;
 
+    }
+
+    public void InOrderTraversal() {
+        inorder(root);
+    }
+
+    public void prinAllPathsToLeaves() {
+        List<Integer> path = new ArrayList<>();
+        path.add(root.data);
+        toLeaf(root, path);
+    }
+
+    private void inorder(Node node) {
+
+        if (node == null) return;
+
+        inorder(node.left);
+        node.print();
+        inorder(node.right);
+    }
+
+    private void toLeaf(Node node, List<Integer> path) {
+
+        if (null == node.left && null == node.right) {
+            System.out.println(Arrays.toString(path.toArray()));
+            return;
+        }
+
+        if (null != node.left) path.add(node.left.data);
+        toLeaf(node.left, path);
+        path.remove(path.size()-1);
+
+
+        if (null != node.right) path.add(node.right.data);
+        toLeaf(node.right, path);
+        path.remove(path.size()-1);
+
+    }
+
+    public static void main(String[] args) {
+        BinaryTree tree = BinaryTree.build();
+        tree.prinAllPathsToLeaves();
+        System.out.println();
     }
 }
