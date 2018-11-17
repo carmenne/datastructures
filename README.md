@@ -20,6 +20,9 @@ http://algo.ninja/ <br />
 
 # Practice
 https://www.hackerrank.com/interview/interview-preparation-kit <br />
+https://www.geeksforgeeks.org/must-do-coding-questions-for-companies-like-amazon-microsoft-adobe/
+
+# Javascript
 http://cs-playground-react.surge.sh/ <br />
 https://learn.freecodecamp.org/#Basic-Algorithm-Scripting <br />
 
