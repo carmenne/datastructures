@@ -9,19 +9,19 @@ class Print {
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_WHITE = "\u001B[37m";
     
-    static void red(String text) {
+    static void red(Object text) {
         System.out.print(ANSI_RED + text + ANSI_RESET);
     }
     
-    static void green(String text) {
+    static void green(Object text) {
         System.out.print(ANSI_GREEN + text + ANSI_RESET);
     }
 
-    static void redln(String text) {
+    static void redln(Object text) {
         System.out.println(ANSI_RED + text + ANSI_RESET);
     }
     
-    static void greenln(String text) {
+    static void greenln(Object text) {
         System.out.println(ANSI_GREEN + text + ANSI_RESET);
     }
     public static void main(String[] args) {
