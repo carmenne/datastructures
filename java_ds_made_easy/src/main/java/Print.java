@@ -13,10 +13,17 @@ class Print {
         System.out.print(ANSI_RED + text + ANSI_RESET);
     }
     
-    static void green (String text) {
+    static void green(String text) {
         System.out.print(ANSI_GREEN + text + ANSI_RESET);
     }
 
+    static void redln(String text) {
+        System.out.println(ANSI_RED + text + ANSI_RESET);
+    }
+    
+    static void greenln(String text) {
+        System.out.println(ANSI_GREEN + text + ANSI_RESET);
+    }
     public static void main(String[] args) {
         Print.red("RED");
         System.out.println();
