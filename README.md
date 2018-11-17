@@ -1,4 +1,4 @@
-# datastructures
+# Datastructures
 # Resources
 Khanacademy
 https://www.khanacademy.org/computing/computer-science/algorithms#intro-to-algorithms
@@ -12,17 +12,17 @@ https://www.geeksforgeeks.org/data-structures/
 Certification
 https://www.codechef.com/certification/data-structures-and-algorithms/about
 
-#Visual
+# Visual
 https://bost.ocks.org/mike/algorithms/
 
-#Game
+# Game
 http://algo.ninja/
 
-#Practice
+# Practice
 https://www.hackerrank.com/interview/interview-preparation-kit
 http://cs-playground-react.surge.sh/
 https://learn.freecodecamp.org/#Basic-Algorithm-Scripting
 
-#OtherSources
+# OtherSources
 https://gaerae.com/awesome-algorithms/
 
