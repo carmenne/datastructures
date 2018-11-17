@@ -21,6 +21,7 @@ class Print {
         Print.red("RED");
         System.out.println();
         Print.green("GREEN");
+        System.out.println();
     }
 }
 
