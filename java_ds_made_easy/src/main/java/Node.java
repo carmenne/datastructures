@@ -4,11 +4,11 @@ class Node {
     State state;
 
     Node(int item) {
-        data = item;
+        this(item, State.NEW);
     }
 
     Node(int item, State value) {
-        this(item);
+        data = item;
         state = value;
     }
 

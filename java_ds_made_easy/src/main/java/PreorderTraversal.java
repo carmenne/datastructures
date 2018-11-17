@@ -2,12 +2,6 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Stack;
 
-enum State {
-    NEW,
-    EXPLORING_LEFT,
-    EXPLORING_RIGHT
-}
-
 class PreorderTraversal {
 
     static void printRecursive(Node node) {
