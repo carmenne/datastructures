@@ -29,9 +29,8 @@ abstract class Heap{
         
         heap[size - 1] = root;
         heap[0] = last;
-        heapifyDown(0);
-        
         size--;
+        heapifyDown(0);
         return root;
     }
     
@@ -108,12 +107,12 @@ class MinHeap extends Heap {
     
     boolean isHeap(int i) {
         
-        if (i >= (size - 2)/2) return true;
+        if (i >= (size - 1)/2) return true;
         
-        if (el(i) > left(i) || el(i) > right(i) || 
-            !isHeap(2*i + 1) || !isHeap(2*i + 2)) return false;
+        if (el(i) < left(i) && el(i) < right(i) && 
+            isHeap(2*i + 1) && isHeap(2*i + 2)) return true;
         
-        return true;
+        return false;
                 
     }
 
@@ -125,7 +124,7 @@ class MinHeap extends Heap {
     }
     
     void heapifyDown(int from) {
-        for (int i = from; i < (size - 2)/2; i++) {
+        for (int i = from; i < (size - 1)/2; i++) {
             
             int root = el(i);
             int left = left(i);
@@ -164,12 +163,12 @@ class MaxHeap extends Heap{
     
     boolean isHeap(int i) {
         
-        if (i >= (size - 2)/2) return true;
+        if (i >= (size - 1)/2) return true;
         
-        if (el(i) < left(i) || el(i) < right(i) || 
-            !isHeap(2*i + 1) || !isHeap(2*i + 2)) return false;
+        if (el(i) > left(i) && el(i) > right(i) && 
+            isHeap(2*i + 1) && isHeap(2*i + 2)) return true;
         
-        return true;
+        return false;
                 
     }
     
@@ -182,7 +181,8 @@ class MaxHeap extends Heap{
     }
 
     void heapifyDown(int from) {
-        for (int i = from; i < (size - 2)/2; i++) {
+
+        for (int i = from; i < (size - 1)/2; i++) {
             
             int root = el(i);
             int left = left(i);
@@ -193,7 +193,7 @@ class MaxHeap extends Heap{
                     else swapUp(2*i + 2);
             }
             
-        }
+        }   
         
     }
 }
@@ -202,8 +202,8 @@ class Test {
     
     public static void main(String[] args) {
         
-        // 2,7,26,25,19,17,1,90,3,36
-        int[] input = {2, 7, 26, 25, 19, 17, 1, 90, 3, 36};
+        // {2, 7, 26, 25, 19, 17, 1, 90, 3, 36}
+        int[] input = {1, 23, 12, 9, 30, 2, 50};
     
         MinHeap minHeap = MinHeap.build(input);
         int min1 = minHeap.peek();
@@ -227,9 +227,7 @@ class Test {
         else
             Print.redln("Heap=False");
 
-
-
-        MaxHeap maxHeap = MaxHeap.build(input);
+        MaxHeap maxHeap = MaxHeap.buildThenHeapify(input);
         Print.greenln("Max is: " + maxHeap.pop());
         
         if (maxHeap.isHeap(0))
@@ -237,11 +235,21 @@ class Test {
         else
             Print.redln("Heap=False");
 
-        Print.greenln("New Max is: " + maxHeap.peek());
+        Print.greenln("New Max is: " + maxHeap.pop());
         if (maxHeap.isHeap(0))
             Print.greenln("Heap=True");
         else
             Print.redln("Heap=False");
-
+        
+        Print.greenln("New Max is: " + maxHeap.pop());
+        if (maxHeap.isHeap(0))
+            Print.greenln("Heap=True");
+        else
+            Print.redln("Heap=False");
+            
+        MaxHeap maxHeap1 = MaxHeap.build(input);
+        MaxHeap maxHeap2 = MaxHeap.buildThenHeapify(input);
+        Print.greenln(Arrays.toString(maxHeap1.heap));
+        Print.greenln(Arrays.toString(maxHeap2.heap));
     }
 }
