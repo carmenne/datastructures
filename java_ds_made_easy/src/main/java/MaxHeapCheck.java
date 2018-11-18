@@ -14,14 +14,12 @@ class MaxHeapCheck {
     
     static int isHeap(int n, int[] input) {
         
-        boolean isHeap = true;
         for (int i = 0; 2*i + 1 < n; i++) {
             
-            isHeap = isHeap && input[i] > input[2*i + 1];
-            if (2*i + 2 < n) 
-                isHeap = isHeap && input[i] > input[2*i + 2];
+            if (input[i] > input[2*i + 1]) return 0;
+            if (2*i + 2 < n && input[i] > input[2*i + 2]) return 0;;
         }
-        return isHeap ? 1 : 0;
+        return 1;
         
     }
     
