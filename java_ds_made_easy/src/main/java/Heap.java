@@ -60,6 +60,8 @@ abstract class Heap{
             heap[i] = input[i];
             size++;
         }
+        
+        for(int i = size - 1; i >= 0; i++) heapifyDown(i);
     }
     
     void insertThenHeapify(int[] input) {
