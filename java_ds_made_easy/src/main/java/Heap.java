@@ -106,9 +106,7 @@ class MinHeap extends Heap {
     
     void heapifyUp() {
         
-        int len = size;
-        
-        for (int i = len - 1; i > 0; i = (i-1)/2) {
+        for (int i = size - 1; i > 0; i = (i-1)/2) {
             if (el(i) < parent(i)) swapUp(i);
         }
     }
