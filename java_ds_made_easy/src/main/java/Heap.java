@@ -61,7 +61,7 @@ abstract class Heap{
             size++;
         }
         
-        for(int i = size - 1; i >= 0; i++) heapifyDown(i);
+        for(int i = size - 1; i >= 0; i--) heapifyDown(i);
     }
     
     void insertThenHeapify(int[] input) {
