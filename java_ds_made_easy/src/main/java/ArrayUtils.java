@@ -3,6 +3,8 @@ class ArrayUtils {
     static int[] enlarge(int[] input) {
         
         int n = input.length;
+        if (n == 0) return new int[1];
+        
         int[] output = new int[2*n];
         
         for (int i = 0; i < n; i++) {

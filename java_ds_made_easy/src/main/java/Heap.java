@@ -3,7 +3,7 @@ import java.util.Arrays;
 class MinHeap {
     
     int size = 0;
-    int[] heap = new int[1];
+    int[] heap = {};
     
     // Returns the min elements from a heap
     Integer getMin() {
