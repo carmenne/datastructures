@@ -124,17 +124,19 @@ class MinHeap extends Heap {
     }
     
     void heapifyDown(int from) {
-        for (int i = from; i < (size - 1)/2; i++) {
+        for (int i = from; i <= (size - 2)/2; i++) {
             
             int root = el(i);
             int left = left(i);
-            int right = right(i);
             
-            if (root > left || root > right) {
+            if (2 * i + 2 >= size) {
+                if (root > left) swapUp(2*i + 1);
+            } else {
+                int right = right(i);
+                if (root > left || root > right)
                     if (left < right) swapUp(2*i + 1);
                     else swapUp(2*i + 2);
             }
-            
         }
         
     }
@@ -182,13 +184,16 @@ class MaxHeap extends Heap{
 
     void heapifyDown(int from) {
 
-        for (int i = from; i < (size - 1)/2; i++) {
+        for (int i = from; i <= (size - 2)/2; i++) {
             
             int root = el(i);
             int left = left(i);
-            int right = right(i);
             
-            if (root < left || root < right) {
+            if (2 * i + 2 >= size) {
+                if (root < left) swapUp(2*i + 1);
+            } else {
+                int right = right(i);
+                if (root < left || root < right)
                     if (left > right) swapUp(2*i + 1);
                     else swapUp(2*i + 2);
             }
@@ -203,6 +208,9 @@ class Test {
     public static void main(String[] args) {
         
         // {2, 7, 26, 25, 19, 17, 1, 90, 3, 36}
+        // {1, 23, 12, 9, 30, 2, 50}
+        // {9, 845, 610, 990}
+
         int[] input = {1, 23, 12, 9, 30, 2, 50};
     
         MinHeap minHeap = MinHeap.build(input);
@@ -249,6 +257,14 @@ class Test {
             
         MaxHeap maxHeap1 = MaxHeap.build(input);
         MaxHeap maxHeap2 = MaxHeap.buildThenHeapify(input);
+        
+        int max1 = maxHeap1.peek();
+        int max2 = maxHeap2.peek();
+        if (max1 == max2) 
+            Print.greenln(String.format("%d=%d", max1, max2));
+        else
+            Print.redln(String.format("%d=%d", max1, max2));
+        
         Print.greenln(Arrays.toString(maxHeap1.heap));
         Print.greenln(Arrays.toString(maxHeap2.heap));
     }
