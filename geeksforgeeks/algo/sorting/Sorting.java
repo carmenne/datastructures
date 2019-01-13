@@ -4,59 +4,64 @@ import java.io.*;
 
 class Sorting {
     
-    private static int[] swap(int[] input) {
-        int temp = input[1];
-        input[1] = input[0];
-        input[0] = temp; 
-        return input;    
+    private static ArrayList<Integer> swap(ArrayList<Integer> input) {
+        
+        ArrayList<Integer> swap = new ArrayList<Integer>();
+        swap.add(input.get(1));
+        swap.add(input.get(0));
+
+        return swap;    
     }
     
-     private static void split(int pivot, int position, int[] input,
+     private static void split(int pivot, int position, 
+        ArrayList<Integer> input,
         ArrayList<Integer> left, ArrayList<Integer> right) {
             
-            for (int i = 0; i < input.length; i++) {
-                if (input[i] < pivot)
-                    left.add(input[i]);
-                else if (input[i] > pivot)
-                    right.add(input[i]);
+            for (int i = 0; i < input.size(); i++) {
+                if (input.get(i) <= pivot)
+                    left.add(input.get(i));
+                else if (input.get(i) > pivot)
+                    right.add(input.get(i));
             }
      }
     
-    private static int[] merge(int[] left, int pivot, int[] right) {
-        int size = left.length + 1 + right.length;
-        int[] output = new int[size];
-        for (int i = 0; i < left.length; i++) {
-            output[i] = left[i];
+    private static ArrayList<Integer> merge(ArrayList<Integer> left, 
+                    int pivot, ArrayList<Integer> right) {
+                        
+        int size = left.size() + 1 + right.size();
+        ArrayList<Integer> output = new ArrayList();
+        for (int i = 0; i < left.size(); i++) {
+            output.add(left.get(i));
         }
-        output[left.length] = pivot;
+        output.add(pivot);
         
-        for (int i = left.length + 1; i < size; i++) {
-            output[i] = right[i - left.length - 1];
+        for (int i = left.size() + 1; i < size; i++) {
+            output.add(right.get(i - left.size() - 1));
         }
         return output;
     }
     
-    private static int[] quickSort(int[] input) {
-        if (input.length == 0 || input.length == 1) {
+    private static ArrayList<Integer> quickSort(ArrayList<Integer> input) {
+        if (input.size() == 0 || input.size() == 1) {
             return input;
-        } else if (input.length == 2) {
-            if (input[0] > input[1])
+        } else if (input.size() == 2) {
+            if (input.get(0) > input.get(1))
                 return swap(input);
             else 
                 return input;
         }
         
-        int pivotPosition = input.length / 2;
-        int pivot = input[pivotPosition];
+        int pivotPosition = input.size() / 2;
+        int pivot = input.get(pivotPosition);
         ArrayList<Integer> left = new ArrayList<>();
         ArrayList<Integer> right = new ArrayList<>();
 
         split(pivot, pivotPosition, input, left, right);
         
         // quickSort(left) + pivot + quickSort(right);
-        return merge(quickSort(left.stream().mapToInt(i -> i).toArray()), 
+        return merge(quickSort(left), 
                 pivot, 
-                quickSort(right.stream().mapToInt(i -> i).toArray()));
+                quickSort(right));
     }
     
     public static void main (String[] args) {
@@ -69,18 +74,21 @@ class Sorting {
             for (int i=0; i < testCases; i++) {
                 
                 int size = Integer.parseInt(br.readLine());
-                int[] input = new int[size];
+                ArrayList<Integer> input = new ArrayList<Integer>();
                 
                 String line = br.readLine();
                 String[] str = line.trim().split("\\s+");
                 for(int j = 0; j < size; j++){
-                  input[j] = Integer.parseInt(str[j]);
+                  input.add(Integer.parseInt(str[j]));
                 }
+
+                System.out.println(Arrays.toString(input.toArray()));
+                ArrayList<Integer> sorted = quickSort(input);
                 
-                int[] sorted = quickSort(input);
+                System.out.println(Arrays.toString(sorted.toArray()));
                 
-                for (int j = 0; j < sorted.length; j++) {
-                    System.out.printf("%d ", sorted[j]);
+                for (int j = 0; j < sorted.size(); j++) {
+                    System.out.printf("%d ", sorted.get(j));
                     
                 }
                 
