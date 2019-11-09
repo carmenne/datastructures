@@ -1,5 +1,5 @@
 String insert(int N, int M, int i, int j) {
-    int mask = ((N+~N) << (j + 1)) + ((1 << i) - 1) ;
-    System.out.println(Integer.toBinaryString(mask));  
-    return Integer.toBinaryString((N & mask) | (M << i));
+	int mask = ((N + ~N) << (j + 1)) + ((1 << i) - 1);
+	System.out.println(Integer.toBinaryString(mask));
+	return Integer.toBinaryString((N & mask) | (M << i));
 }
