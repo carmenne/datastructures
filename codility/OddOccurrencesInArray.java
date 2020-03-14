@@ -10,15 +10,10 @@ public class OddOccurrencesInArray {
 
 class Solution {
 	public int solution(int[] A) {
-		Set<Integer> oddities = new HashSet<>();
-		for (int i = 0; i < A.length; i++) {
-			int element = A[i];
-			if (oddities.contains(element)) {
-				oddities.remove(element);
-			} else {
-				oddities.add(element);
-			}
+		int result = 0;
+		for (int i : A) {
+			result ^= i;
 		}
-		return oddities.iterator().next();
+		return result;
 	}
 }
