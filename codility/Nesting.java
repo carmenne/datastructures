@@ -16,12 +16,12 @@ class Solution {
 		
 		for (char s : S.toCharArray()) {
 			if (s == '(') {
-				brackets.addFirst(s);
+				brackets.push(s);
 			} else {
 				if (brackets.isEmpty()) {
 					return 0;
 				}
-				brackets.removeFirst();
+				brackets.pop();
 			}
 		}	
 		
