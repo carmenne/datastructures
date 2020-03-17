@@ -1,6 +1,7 @@
-import java.util.*;
+import java.util.Arrays;
 
-public class MaxSliceSum {
+public class Kadane {
+
 	public static void main(String[] args) {
 		Solution solution = new Solution();
 		int[] A = {-2, 1, -9, -5};
@@ -10,16 +11,30 @@ public class MaxSliceSum {
 	}
 }
 
-class Solution {
+class Solution { 
+
+	int[] A;
+	Integer[] DP;
+	
+	
 	public int solution(int[] A) {
+		this.A = A;
 		int N = A.length;
+		DP = new Integer[N];
+
 		int max = Integer.MIN_VALUE;
-		int max_slice = 0;
-		
 		for (int i = 0; i < N; i++) {
-			max_slice = A[i] + Math.max(0, max_slice);
-			max = Math.max(max, max_slice);
+			if (DP[i] == null) {
+				DP[i] = sum(i);
+			}
+			int val = DP[i];
+			if (val > max) max = val;
 		}
 		return max;
+	}	
+	
+	private int sum(int i) {
+		if (i == 0) return A[i];
+		return A[i] + Math.max(0, sum(i-1));
 	}
 }
