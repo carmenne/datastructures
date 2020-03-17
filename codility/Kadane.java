@@ -16,7 +16,22 @@ class Solution {
 	int[] A;
 	Integer[] DP;
 	
+	public int solution(int[] A) {
+		this.A = A;
+		int N = A.length;
+		int sum = 0;
+		int max = Integer.MIN_VALUE;
+		
+		for (int i = 0; i < N; i++) {
+			sum = A[i] + Math.max(0, sum);
+			max = Math.max(sum, max);
+		}
+		return max;
+	}	
 	
+	
+	
+	/* Top down	
 	public int solution(int[] A) {
 		this.A = A;
 		int N = A.length;
@@ -37,4 +52,5 @@ class Solution {
 		if (i == 0) return A[i];
 		return A[i] + Math.max(0, sum(i-1));
 	}
+	* */
 }

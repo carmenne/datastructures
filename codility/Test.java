@@ -8,12 +8,12 @@ public class Test {
 	}
 }
 
-	class Solution { 
-		public int solution(int X, int Y, int D) {
-			
-			
-			
-			return -1;
-		} 
-	}
+class Solution { 
+	public int solution(int X, int Y, int D) {
+		
+		
+		
+		return -1;
+	} 
 }
+
